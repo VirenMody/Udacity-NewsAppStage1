@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:minHeight="?android:listPreferredItemHeightLarge"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/spacing_small"
+    android:paddingBottom="@dimen/spacing_small"
+    android:paddingEnd="@dimen/spacing_medium"
+    android:paddingLeft="@dimen/spacing_medium"
+    android:paddingRight="@dimen/spacing_medium"
+    android:paddingStart="@dimen/spacing_medium"
+    android:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@android:color/darker_gray"
+        tools:text="Section" />
+
+    <TextView
+        android:id="@+id/headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/white"
+        tools:text="Headline" />
+
+        <TextView
+            android:id="@+id/author_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@android:color/darker_gray"
+            tools:text="Author - Sunday, April 22, 2018" />
+
+</LinearLayout>

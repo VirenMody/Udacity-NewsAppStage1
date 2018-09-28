@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_small_neg">-8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_medium_neg">-16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+
+    <dimen name="text_small">8dp</dimen>
+    <dimen name="text_medium">16dp</dimen>
+    <dimen name="text_large">24dp</dimen>
+
+    <dimen name="separator_height">0.5dp</dimen>
+    <dimen name="list_item_height">100dp</dimen>
+    <dimen name="half_list_item_height">50dp</dimen>
+</resources>
