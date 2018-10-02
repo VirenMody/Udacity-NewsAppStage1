@@ -2,4 +2,26 @@
     <string name="app_name">NewsAppStage1</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="no_data">No news articles found.</string>
+    <string name="settings_title">News Settings</string>
+    <string name="settings_menu_item">Settings</string>
+
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_most_recent_value</string>
+
+    <string name="settings_order_by_most_recent_label">Most Recent</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">newest</string>
+
+    <string name="settings_order_by_least_recent_label">Least Recent</string>
+    <string name="settings_order_by_least_recent_value" translatable="false">oldest</string>
+
+    <string name="settings_dates_label">Dates</string>
+    <string name="settings_dates_key" translatable="false">dates</string>
+    <string name="settings_dates_default" translatable="false">@string/settings_dates_all_value</string>
+
+    <string name="settings_dates_all_label">All</string>
+    <string name="settings_dates_all_value" translatable="false">all</string>
+
+    <string name="settings_dates_today_label">Today</string>
+    <string name="settings_dates_today_value" translatable="false">today</string>
 </resources>

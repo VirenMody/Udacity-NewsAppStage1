@@ -4,29 +4,37 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.LoaderManager.*;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<List<News>> {
 
     private static final String LOG_TAG = "In NewsActivity - ";
+    private static final String LOG_TAG2 = "IN TODAY  - ";
     private static final String GUARDIAN_API_URL = "content.guardianapis.com";
     private static final String GUARDIAN_API_KEY = "07f07fb1-de71-4fd2-98a1-353afb43fb6d";
     private TextView mEmptyStateTextView;
@@ -76,7 +84,10 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public Loader<List<News>> onCreateLoader(int i, @Nullable Bundle bundle) {
 
-        String section = "sport|technology|education|film|environment|us-news|science|world";
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default));
 
         Uri.Builder uriBuilder = new Uri.Builder();
         uriBuilder.scheme("https")
@@ -84,8 +95,18 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
                 .appendPath("search")
                 .appendQueryParameter("api-key", GUARDIAN_API_KEY)
                 .appendQueryParameter("show-tags", "contributor")
-                .appendQueryParameter("section", section)
+                .appendQueryParameter("order-by", orderBy)
                 .appendQueryParameter("production-office", "us");
+
+        String dates = sharedPrefs.getString(
+                getString(R.string.settings_dates_key),
+                getString(R.string.settings_dates_default));
+
+        if(dates.equalsIgnoreCase(getString(R.string.settings_dates_today_value))) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String today = formatter.format(new Date());
+            uriBuilder.appendQueryParameter("from-date", today);
+        }
 
         return new NewsLoader(this, uriBuilder.toString());
     }
@@ -105,5 +126,22 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public void onLoaderReset(@NonNull Loader<List<News>> loader) {
         mNewsAdapter.clear();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

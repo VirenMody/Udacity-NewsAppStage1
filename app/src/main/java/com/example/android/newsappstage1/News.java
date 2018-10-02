@@ -10,7 +10,6 @@ public class News {
     private String mSection;
     private String mUrl;
 
-    // TODO Fix date to proper format
     public News(String mHeadline, String mDate, String mAuthor, String mSection,
                 String url) {
         this.mHeadline = mHeadline;
